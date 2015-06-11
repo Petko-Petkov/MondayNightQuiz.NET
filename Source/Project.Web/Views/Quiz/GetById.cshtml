@@ -1,0 +1,14 @@
+﻿@model Project.Web.ViewModels.QuizViewModel
+
+<div class="row">
+    <h2>@Model.QuizMaster.Name</h2>
+    <hr/>
+    @foreach (var r in Model.Rounds)
+    {
+        <p>Кръг @r.RoundNumber - @r.Name</p>
+        foreach (var q in r.Questions)
+        {
+            <p>@q.QuestionNumber - @q.Content</p>
+        }
+    }
+</div>

@@ -1,0 +1,14 @@
+﻿@model IQueryable<Project.Web.ViewModels.QuizViewModel>
+
+@{
+    ViewBag.Title = "Куизове";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var q in Model)
+{
+    <h3>
+        @Html.ActionLink("Куизмастъри " + @q.QuizMaster.Name + " от " + @q.DateEvent.ToShortDateString(), "GetById", "Quiz", new { id = q.Id }, null)
+    </h3>
+}

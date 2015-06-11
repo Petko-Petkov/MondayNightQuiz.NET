@@ -1,0 +1,47 @@
+﻿@model Project.Web.Areas.Admin.ViewModels.QuizInputViewModel
+
+<div class="well bs-component">
+    @using (@Html.BeginForm("Add", "QuizAdmin", FormMethod.Post, new { @class = "form-horizontal", area = "Admin" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+    <fieldset>
+        <legend>Създай куиз</legend>
+        <div class="form-group">
+            @Html.LabelFor(m => m.DateEvent, new { @class="col-md-2" })
+            <div class="col-md-5 input-group date" id="date-time-picker">
+                @*<input type="datetime" class="form-control" value="" />*@
+                @Html.TextBoxFor(m => m.DateEvent, new { @class = "form-control" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.QuizMasterId, new { @class = "col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.QuizMasterId, Model.QuizMasterName, new {@class="form-control"})
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Създай" class="btn btn-danger btn-lg" />
+        </div>
+    </fieldset>
+    }
+
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+        $(function () {
+            $('#date-time-picker').datetimepicker({
+                viewMode: 'years'
+            });
+        });
+    </script>   
+}
